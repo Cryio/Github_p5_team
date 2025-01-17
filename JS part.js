@@ -1,4 +1,3 @@
-// script.js
 const display = document.getElementById('display');
 
 function appendValue(value) {
@@ -11,8 +10,9 @@ function clearDisplay() {
 
 function calculate() {
     try {
-        display.value = eval(display.value);
-    } catch {
+        const result = Function('"use strict";return (' + display.value + ')')();
+        display.value = result;
+    } catch (error) {
         display.value = 'Error';
-    }
+    }
 }
